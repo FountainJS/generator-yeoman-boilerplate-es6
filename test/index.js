@@ -1,9 +1,7 @@
-'use strict';
+import assert from 'assert';
+import sampleNode from '../generators/app';
 
-var assert = require('assert');
-var generatorFountainGulpfile = require('../lib');
-
-describe('generator-fountain-gulpfile', function () {
+describe('generator-yeoman-generator-es6', function () {
   it('should have unit test!', function () {
     assert(false, 'we expected this package author to add actual unit tests.');
   });
