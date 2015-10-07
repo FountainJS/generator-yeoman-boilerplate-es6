@@ -1,18 +1,14 @@
-var gulp = require('gulp');
-var gutil = require('gulp-util');
-var eslint = require('gulp-eslint');
-var excludeGitignore = require('gulp-exclude-gitignore');
-var babel = require('gulp-babel');
-var nsp = require('gulp-nsp');
-var mocha = require('gulp-mocha');
-var istanbul = require('gulp-istanbul');
-var isparta = require('isparta');
+import gulp from 'gulp';
+import gutil from 'gulp-util';
+import eslint from 'gulp-eslint';
+import excludeGitignore from 'gulp-exclude-gitignore';
+import babel from 'gulp-babel';
+import nsp from 'gulp-nsp';
+import mocha from 'gulp-mocha';
+import istanbul from 'gulp-istanbul';
+import { Instrumenter } from 'isparta';
 
-// Initialize the babel transpiler so ES2015 files gets compiled
-// when they're loaded
-require('babel-core/register');
-
-gulp.task('static', function () {
+gulp.task('static', () => {
   return gulp.src('src/**/*.js')
     .pipe(excludeGitignore())
     .pipe(eslint())
@@ -20,21 +16,20 @@ gulp.task('static', function () {
     .pipe(eslint.failAfterError());
 });
 
-gulp.task('nsp', function (cb) {
+gulp.task('nsp', cb => {
   nsp('package.json', cb);
 });
 
-gulp.task('pre-test', function () {
+gulp.task('pre-test', () => {
   return gulp.src('src/**/*.js')
     .pipe(istanbul({
       includeUntested: true,
-      instrumenter: isparta.Instrumenter
+      instrumenter: Instrumenter
     }))
     .pipe(istanbul.hookRequire());
 });
 
-gulp.task('test', ['pre-test'], function () {
-
+gulp.task('test', ['pre-test'], () => {
   return gulp.src('test/**/*.js')
     .pipe(mocha({reporter: 'spec'}))
     .on('error', function errorHandler(err) {
@@ -44,7 +39,7 @@ gulp.task('test', ['pre-test'], function () {
     .pipe(istanbul.writeReports());
 });
 
-gulp.task('babel', function () {
+gulp.task('babel', () => {
   return gulp.src(['src/index.js', 'src/generators/*/*.js'])
     .pipe(babel())
     .pipe(gulp.dest('generators/'));

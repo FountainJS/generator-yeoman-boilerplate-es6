@@ -26,10 +26,10 @@
     "yeoman-generator": "^0.20.3"
   },
   "devDependencies": {
-    "babel-core": "^5.5.0",
+    "babel": "^5.8.23",
     "estraverse": "^4.1.0",
-    "gulp": "^3.6.0",
-    "gulp-babel": "^5.1.0",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.2.1",
     "gulp-eslint": "^1.0.0",
     "gulp-exclude-gitignore": "^1.0.0",
     "gulp-istanbul": "^0.10.1",
