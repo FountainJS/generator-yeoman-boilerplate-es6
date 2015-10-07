@@ -1,9 +1,9 @@
 {
-  "name": "generator-yeoman-generator-es6",
+  "name": "generator-yeoman-boilerplate-es6",
   "version": "0.0.1",
   "description": "Yeoman generator written in ES6",
   "homepage": "",
-  "repository": "fountainjs/generator-yeoman-generator-es6",
+  "repository": "fountainjs/generator-yeoman-boilerplate-es6",
   "author": {
     "name": "Mehdy Dara",
     "email": "mdara@eleven-labs.com",

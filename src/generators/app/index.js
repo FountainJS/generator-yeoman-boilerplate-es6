@@ -1,7 +1,7 @@
 import extend from 'deep-extend';
 import { Base } from 'yeoman-generator';
 
-export default class GeneratorFoutainAngularJSGulpfile extends Base {
+export default class GeneratorYeomanBoilerplateEs6 extends Base {
 
   constructor(...args) {
     super(...args);
