@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "babel-core": "^5.5.0",
+    "estraverse": "^4.1.0",
     "gulp": "^3.6.0",
     "gulp-babel": "^5.1.0",
     "gulp-eslint": "^1.0.0",
