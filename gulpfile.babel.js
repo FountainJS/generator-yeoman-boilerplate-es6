@@ -6,7 +6,7 @@ import babel from 'gulp-babel';
 import nsp from 'gulp-nsp';
 import mocha from 'gulp-mocha';
 import istanbul from 'gulp-istanbul';
-import isparta from 'isparta';
+import { Instrumenter } from 'isparta';
 
 gulp.task('static', () => {
   return gulp.src('src/**/*.js')
@@ -24,7 +24,7 @@ gulp.task('pre-test', () => {
   return gulp.src('src/**/*.js')
     .pipe(istanbul({
       includeUntested: true,
-      instrumenter: isparta.Instrumenter
+      instrumenter: Instrumenter
     }))
     .pipe(istanbul.hookRequire());
 });
