@@ -9,7 +9,7 @@ import istanbul from 'gulp-istanbul';
 import { Instrumenter } from 'isparta';
 
 gulp.task('static', () => {
-  return gulp.src('src/**/*.js')
+  return gulp.src(['gulpfile.babel.js', 'src/**/*.js'])
     .pipe(excludeGitignore())
     .pipe(eslint())
     .pipe(eslint.format())
