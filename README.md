@@ -1,29 +1,14 @@
-# WIP
-
-Should be used in parent generator.
-
-Actually only support SASS, JS, HTML.
-
-***
-# generator-fountain-gulpfile [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
-> Yeoman generator to serve gulpfile
-
+# generator-yeoman-boilerplate-es6
+> Boilerplate of Yeoman generator written in ES6 with Babel and Gulp
 
 ## Install
 
 ```sh
-$ npm install --save generator-fountain-gulpfile
+$ git clone https://github.com/FountainJS/generator-yeoman-boilerplate-es6.git
+$ cd generator-yeoman-boilerplate-es6
+$ npm link
+$ yo yeoman-boilerplate-es6
 ```
-
-
-## Usage
-
-```js
-var generatorFountainGulpfile = require('generator-fountain-gulpfile');
-
-generatorFountainGulpfile('Rainbow');
-```
-
 ## License
 
 MIT © [Mehdy Dara](https://github.com/zckrs)
