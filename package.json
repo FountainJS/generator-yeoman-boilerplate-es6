@@ -23,7 +23,6 @@
     "babel"
   ],
   "dependencies": {
-    "deep-extend": "^0.4.0",
     "yeoman-generator": "^0.20.3"
   },
   "devDependencies": {
