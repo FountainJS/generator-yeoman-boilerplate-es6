@@ -43,6 +43,7 @@ export default class GeneratorYeomanBoilerplateEs6 extends Base {
 
   writing() {
     // Write your files
+    this.fs.write(this.destinationPath('README.md'), `# The name is: ${ this.props.applicationName }\n`);
   }
 
   default() {
