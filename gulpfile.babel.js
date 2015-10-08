@@ -3,33 +3,33 @@ import gutil from 'gulp-util';
 import eslint from 'gulp-eslint';
 import excludeGitignore from 'gulp-exclude-gitignore';
 import babel from 'gulp-babel';
-import nsp from 'gulp-nsp';
+// import nsp from 'gulp-nsp';
 import mocha from 'gulp-mocha';
 import istanbul from 'gulp-istanbul';
 import { Instrumenter } from 'isparta';
 
-gulp.task('static', () => {
-  return gulp.src(['gulpfile.babel.js', 'src/**/*.js'])
+gulp.task('default', gulp.series(eslintCheck, gulp.parallel(compileIndex, compileGenerators), gulp.series(istanbulCover, mochaTest)));
+gulp.task('prepublish', gulp.parallel(compileIndex, compileGenerators));
+// gulp.task('prepublish', gulp.parallel(compileIndex, compileGenerators, nodeSecurityProject));
+
+function eslintCheck() {
+  return gulp.src('**/*.js')
     .pipe(excludeGitignore())
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
-});
+}
 
-gulp.task('nsp', cb => {
-  nsp('package.json', cb);
-});
-
-gulp.task('pre-test', () => {
+function istanbulCover() {
   return gulp.src('src/**/*.js')
     .pipe(istanbul({
       includeUntested: true,
       instrumenter: Instrumenter
     }))
     .pipe(istanbul.hookRequire());
-});
+}
 
-gulp.task('test', ['pre-test'], () => {
+function mochaTest() {
   return gulp.src('test/**/*.js')
     .pipe(mocha({reporter: 'spec'}))
     .on('error', function errorHandler(err) {
@@ -37,14 +37,20 @@ gulp.task('test', ['pre-test'], () => {
       this.emit('end');
     })
     .pipe(istanbul.writeReports());
-});
+}
 
-gulp.task('babel', () => {
-  return gulp.src(['src/index.js', 'src/generators/*/*.js'])
+function compileIndex() {
+  return gulp.src('src/index.js')
+    .pipe(babel())
+    .pipe(gulp.dest('.'));
+}
+
+function compileGenerators() {
+  return gulp.src('src/generators/**/*.js')
     .pipe(babel())
     .pipe(gulp.dest('generators/'));
-});
+}
 
-// gulp.task('prepublish', ['nsp', 'babel']);
-gulp.task('prepublish', ['babel']);
-gulp.task('default', ['static', 'test']);
+// function nodeSecurityProject(cb) {
+//   nsp('package.json', cb);
+// }
