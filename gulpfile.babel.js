@@ -8,9 +8,9 @@ import mocha from 'gulp-mocha';
 import istanbul from 'gulp-istanbul';
 import { Instrumenter } from 'isparta';
 
-gulp.task('default', gulp.series(eslintCheck, gulp.parallel(compileIndex, compileGenerators), gulp.series(istanbulCover, mochaTest)));
-gulp.task('prepublish', gulp.parallel(compileIndex, compileGenerators));
-// gulp.task('prepublish', gulp.parallel(compileIndex, compileGenerators, nodeSecurityProject));
+gulp.task('default', gulp.series(eslintCheck, compileGenerators, gulp.series(istanbulCover, mochaTest)));
+gulp.task('prepublish', compileGenerators);
+// gulp.task('prepublish', compileGenerators, nodeSecurityProject));
 
 function eslintCheck() {
   return gulp.src('**/*.js')
@@ -37,12 +37,6 @@ function mochaTest() {
       this.emit('end');
     })
     .pipe(istanbul.writeReports());
-}
-
-function compileIndex() {
-  return gulp.src('src/index.js')
-    .pipe(babel())
-    .pipe(gulp.dest('.'));
 }
 
 function compileGenerators() {
